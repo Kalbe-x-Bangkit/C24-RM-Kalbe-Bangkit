@@ -1,4 +1,3 @@
-# cek
 ---
 title: VQA Kalbe Bangkit
 emoji: 🏆
@@ -24,19 +23,9 @@ roco dataset : https://huggingface.co/datasets/mdwiratathya/ROCO-radiology
 
 
 ## Model Architecture
-<!-- The model uses a Parameterized Hypercomplex Shared Encoder network (PHYSEnet). -->
 
-unimodal : VGG19 for vision and GPT2 for text
-![Model Architecture](img/Model-Architecture.png)
-
-multimodal : blip
-![Model Architecture](img/1_2dlZpUiuLY6ngZK9D4fATA.png)
-
-multimodal : idefics2
 ![Model Architecture](img/idefics2_architecture.png)
 
-
-Reference: [ScienceDirect](https://www.sciencedirect.com/science/article/abs/pii/S0933365723001252)
 
 ## Evaluation
 the table below show evaluate result for fine-tuned model on medical dataset.
@@ -51,5 +40,4 @@ the table below show evaluate result for fine-tuned model on medical dataset.
 for demo vqa-task, visit our huggingface space : https://huggingface.co/spaces/KalbeDigitalLab/IDEFICS2-8B-MedicalVQA
 
 
-## Usage
 
