@@ -1,4 +1,10 @@
-gradio
 transformers
-cuda
-pipeline
+gradio
+plotly
+torch
+tensorflow
+tf-keras
+peft
+bitsandbytes
+accelerate
+pillow
