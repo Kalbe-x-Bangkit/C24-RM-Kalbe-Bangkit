@@ -30,7 +30,7 @@ unimodal : VGG19 for vision and GPT2 for text
 ![Model Architecture](img/Model-Architecture.png)
 
 multimodal : blip
-![Model Architecture](img/blip architecture.png)
+![Model Architecture](img/1_2dlZpUiuLY6ngZK9D4fATA.png)
 
 multimodal : idefics2
 ![Model Architecture](img/idefics2_architecture.png)
