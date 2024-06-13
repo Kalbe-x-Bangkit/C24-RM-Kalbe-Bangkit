@@ -23,8 +23,6 @@ slake dataset : https://huggingface.co/datasets/mdwiratathya/SLAKE-vqa-english
 
 roco dataset : https://huggingface.co/datasets/mdwiratathya/ROCO-radiology
 
-
-
 ## Model Architecture
 
 ![Model Architecture](img/idefics2_architecture.png)
@@ -41,19 +39,23 @@ The table below shows the accuracy results for the pre-fine-tuned models on the 
 | Idefics2-8B  | -                     | 53.22%           | 76.26%         |
 | Idefics2-8B  | ROCO                  | 51.00%           | 81.00%         |
 
-
 ## File Description
-1. vgg19gpt2.ipnyb is fine-tune file for ..............
-2. blip.ipnyb ..............
-3. idefics2.ipnyb ....................
+in notebooks folder, there are files for fine-tuning model in this project
+1. notebooks/BLIP(vqa_base)_SLAKE.ipynb
+2. notebooks/BLIP(vqa_base)_VQARAD.ipynb
+3. notebooks/FT_Idefics_2_ROCO.ipynb
+4. notebooks/FT_Idefics_2_VQA.ipynb
+5. notebooks/VGG_GPT2_BioGPT.ipynb
+6. notebooks/preprocessing_PMCVQA_small.ipynb
+7. notebooks/preprocessing_ROCO.ipynb
+8. notebooks/preprocessing_SLAKE.ipynb
 
 ## Demo
 for demo vqa-task, visit our huggingface space : https://huggingface.co/spaces/KalbeDigitalLab/IDEFICS2-8B-MedicalVQA
+app.py file to run interface demo for idefics2
 
 ## Reference :
 - https://arxiv.org/pdf/2405.02246
 - https://arxiv.org/pdf/2201.12086
 - https://github.com/ab3llini/Transformer-VQA
-
-
 
