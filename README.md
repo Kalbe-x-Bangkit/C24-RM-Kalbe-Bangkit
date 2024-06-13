@@ -18,7 +18,9 @@ The project addresses the challenge of accurate and efficient medical imaging an
 this project fine-tune pre-trained VLM model using these datasets :
 
 rad-vqa dataset : https://huggingface.co/datasets/flaviagiammarino/vqa-rad
+
 slake dataset : https://huggingface.co/datasets/mdwiratathya/SLAKE-vqa-english
+
 roco dataset : https://huggingface.co/datasets/mdwiratathya/ROCO-radiology
 
 
