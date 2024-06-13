@@ -29,8 +29,6 @@ roco dataset : https://huggingface.co/datasets/mdwiratathya/ROCO-radiology
 
 ![Model Architecture](img/idefics2_architecture.png)
 
-## Evaluation
-The table below shows the evaluation results for the fine-tuned models on the medical datasets.
 
 ## Evaluation
 The table below shows the accuracy results for the pre-fine-tuned models on the VQA-RAD and SLAKE datasets.
