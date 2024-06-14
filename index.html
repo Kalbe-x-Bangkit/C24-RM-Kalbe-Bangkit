@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet" />
+    <title>Visual Question Answering (VQA) for Medical Imaging</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .title {
+            font-size: 24px !important;
+            font-weight: 600 !important;
+            letter-spacing: 0em;
+            text-align: center;
+            color: #374159 !important;
+        }
+
+        .subtitle {
+            font-size: 24px !important;
+            font-style: italic;
+            font-weight: 400 !important;
+            letter-spacing: 0em;
+            text-align: center;
+            color: #1d652a !important;
+            padding-bottom: 0.5em;
+        }
+
+        .overview-heading {
+            font-size: 24px !important;
+            font-weight: 600 !important;
+            letter-spacing: 0em;
+            text-align: left;
+        }
+
+        .overview-content {
+            font-size: 14px !important;
+            font-weight: 400 !important;
+            line-height: 33px !important;
+            letter-spacing: 0em;
+            text-align: left;
+        }
+
+        .content-image {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        .vl {
+            border-left: 5px solid #1d652a;
+            padding-left: 20px;
+            color: #1d652a !important;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            align-items: flex-start;
+            margin-bottom: 1em;
+        }
+
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            .grid-container {
+                display: block;
+            }
+
+            .overview-heading {
+                font-size: 18px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Visual Question Answering (VQA) for Medical Imaging</h1>
+        <h2 class="subtitle">Kalbe Digital Lab</h2>
+        <section class="overview">
+            <div class="grid-container">
+                <h3 class="overview-heading"><span class="vl">Overview</span></h3>
+                <div>
+                    <p class="overview-content">
+                        This project addresses the challenge of accurate and efficient medical imaging analysis in healthcare,
+                        aiming to reduce human error and workload for radiologists. The proposed solution involves developing advanced AI
+                        models for Visual Question Answering (VQA) to assist healthcare professionals in analyzing
+                        medical images (radiology images) quickly and accurately. We fine-tune HuggingFace multimodal model Idefics2-8b using radiology VQA datasets.
+                    </p>
+                </div>
+            </div>
+            <div class="grid-container">
+                <h3 class="overview-heading"><span class="vl">Dataset</span></h3>
+                <div>
+                    <p class="overview-content">
+                        We fine-tune pre-trained model using these datasets :
+                    </p>
+                    <ul>
+                        <li><a href="https://huggingface.co/datasets/flaviagiammarino/vqa-rad" target="_blank">VQA-RAD dataset</a></li>
+                        <li><a href="https://huggingface.co/datasets/mdwiratathya/SLAKE-vqa-english" target="_blank">SLAKE dataset</a></li>
+                        <li><a href="https://huggingface.co/datasets/mdwiratathya/ROCO-radiology" target="_blank">ROCO dataset</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="grid-container">
+                <h3 class="overview-heading"><span class="vl">Model Architecture</span></h3>
+                <div>
+                    <p class="overview-content">The model is trained using Idefics2-8b.</p>
+                    <img class="content-image" src="https://raw.githubusercontent.com/Kalbe-x-Bangkit/C24-RM-Kalbe-Bangkit/main/img/idefics2_architecture.png" alt="model-architecture" />
+                </div>
+            </div>
+        </section>
+        <h3 class="overview-heading"><span class="vl">Demo</span></h3>
+        <p class="overview-content">Please upload an image and question or select from the examples to see the answer prediction</p>
+    </div>
+</body>
+</html>

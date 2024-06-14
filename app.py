@@ -9,7 +9,7 @@ import torch
 from peft import LoraConfig
 from transformers import AutoProcessor, BitsAndBytesConfig, IdeficsForVisionText2Text
 
-# Baca konten HTML dari file index.html
+# read from index.html
 with open('index.html', encoding='utf-8') as file:
     html_content = file.read()
 
@@ -34,12 +34,12 @@ if USE_QLORA or USE_LORA:
             bnb_4bit_compute_dtype=torch.float16
         )
 
-    # Model yang akan digunakan
-    model = Idefics2ForConditionalGeneration.from_pretrained(
-        "jihadzakki/idefics2-8b-vqarad-delta",
-        torch_dtype=torch.float16,
-        quantization_config=bnb_config
-    )
+    # Model Idefics2
+    # model = Idefics2ForConditionalGeneration.from_pretrained(
+    #     "jihadzakki/idefics2-8b-vqarad-delta",
+    #     torch_dtype=torch.float16,
+    #     quantization_config=bnb_config
+    # )
 
 processor = AutoProcessor.from_pretrained(
     "HuggingFaceM4/idefics2-8b",
@@ -81,24 +81,7 @@ def format_answer(image, question, history):
         return f"Error: {str(e)}", history
 
 def clear_history():
-    return "", []
-
-def undo_last(history):
-    if history:
-        history.pop()
-    return "", history
-
-def retry_last(image, question, history):
-    if history:
-        last_image, last_entry = history[-1]
-        return format_answer(last_image, question, history[:-1])
-    return "No previous analysis to retry.", history
-
-def switch_theme(mode):
-    if mode == "Light Mode":
-        return gr.themes.Default()
-    else:
-        return gr.themes.Soft(primary_hue=gr.themes.colors.green, secondary_hue=gr.themes.colors.green)
+    return None, "", [], ""
 
 def save_feedback(feedback):
     return "Thank you for your feedback!"
@@ -120,13 +103,14 @@ with gr.Blocks(
     gr.HTML(html_content)  # Display the HTML content
 
     with gr.Row():
-        with gr.Column(scale=1):
-            image_input = gr.Image(label="Upload image", type="pil")
-        with gr.Column(scale=1):
-            with gr.Column(scale=1):
-                question_input = gr.Textbox(show_label=False, placeholder="Enter your question here...", lines=2)
+        with gr.Column():
+            image_input = gr.Image(label="Image", type="pil")
+        with gr.Column():
+            question_input = gr.Textbox(show_label=False, placeholder="Enter your question here...")
+            with gr.Row():
                 submit_button = gr.Button("Submit", variant="primary")
-                answer_output = gr.Textbox(label="Result Prediction", lines=2)
+                clear_button = gr.Button("🗑️ Clear")
+            answer_output = gr.Textbox(label="Result Prediction")
 
     history_state = gr.State([])  # Initialize the history state
 
@@ -137,28 +121,11 @@ with gr.Blocks(
         show_progress=True
     )
 
-    with gr.Row():
-        retry_button = gr.Button("🔄 Retry")
-        undo_button = gr.Button("↩️ Undo")
-        clear_button = gr.Button("🗑️ Clear")
-
-        retry_button.click(
-            retry_last,
-            inputs=[image_input, question_input, history_state],
-            outputs=[answer_output, history_state]
-        )
-
-        undo_button.click(
-            undo_last,
-            inputs=[history_state],
-            outputs=[answer_output, history_state]
-        )
-
-        clear_button.click(
-            clear_history,
-            inputs=[],
-            outputs=[answer_output, history_state]
-        )
+    clear_button.click(
+        clear_history,
+        inputs=[],
+        outputs=[image_input, question_input, answer_output, history_state]
+    )
 
     with gr.Row():
         history_gallery = gr.Gallery(label="History Log", elem_id="history_log")
@@ -168,7 +135,7 @@ with gr.Blocks(
             outputs=[history_gallery]
         )
 
-    gr.Markdown("## Contoh Input dengan Teks")
+    gr.Markdown("## Example of Input with Text")
     with gr.Row():
         with gr.Column():
             gr.Examples(
@@ -186,17 +153,6 @@ with gr.Blocks(
         gr.Markdown("**Upload image**: Select the chest X-ray image you want to analyze.")
         gr.Markdown("**Enter your question**: Type the question you have about the image, such as 'What modality is used to take this image?'")
         gr.Markdown("**Submit**: Click the submit button to get the prediction from the model.")
-
-    with gr.Accordion("User Preferences", open=False):
-        gr.Markdown("**Mode**: Choose between light and dark mode for your comfort.")
-        mode_selector = gr.Radio(choices=["Light Mode", "Dark Mode"], label="Select Mode")
-        apply_theme_button = gr.Button("Apply Theme")
-
-        apply_theme_button.click(
-            switch_theme,
-            inputs=[mode_selector],
-            outputs=[],
-        )
 
     with gr.Accordion("Feedback", open=False):
         gr.Markdown("**We value your feedback!** Please provide any feedback you have about this application.")
